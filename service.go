@@ -29,7 +29,7 @@ func extractTextFromFile(f FileInfo) {
 		lowerCase := strings.ToLower(f.Text)
 		if strings.Contains(lowerCase, words[i]) {
 			exiestWord = append(exiestWord, true)
-			log.Printf("Find this word %v in cv", words[i])
+			log.Printf("Find word %v in CV", words[i])
 		} else {
 			log.Printf("Word %v in missing", words[i])
 		}
