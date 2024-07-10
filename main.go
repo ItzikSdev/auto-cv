@@ -19,9 +19,11 @@ type FileInfo struct {
 }
 
 func uploadFile(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("File Upload Endpoint Hit")
 	r.ParseMultipartForm(10 << 20)
-	file, handler, err := r.FormFile("myFile")
+	file, handler, err := r.FormFile(r.RequestURI[1:])
+	if file == nil {
+		http.Error(w, "error", http.StatusNotFound)
+	}
 	if err != nil {
 		fmt.Println("Error Retrieving the File")
 		fmt.Println(err)
